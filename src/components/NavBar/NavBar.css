@@ -1,0 +1,21 @@
+.header{
+    padding: 20px 50px;
+    width: 95%;
+    background-color: wheat;
+    display: flex;
+    justify-content: space-between;
+    align-content: center ; 
+}
+
+
+.header-nav{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+.header-link{
+    margin: 10px;
+    font-size: 1vw;
+    cursor: pointer;
+}
