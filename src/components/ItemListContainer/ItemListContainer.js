@@ -1,13 +1,36 @@
 
-import './ItemListContainer.css'
+import { useEffect,useState } from 'react'
+import { pedirDatos } from '../../helpers/pedirDatos'
+import { ItemList } from '../ItemList/ItemList'
 
 export const ItemListContainer = ({greeting}) => {
 
+    const [productos,setProductos] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    useEffect( ()=>{
+        setLoading(true)
+
+        pedirDatos()
+            .then ((res) => {
+                setProductos(res)
+            })
+            .catch((err)=> {
+                console.log(err)
+            }) 
+            .finally(()=> {
+                setLoading(false)
+            })
+    },[])
+
+
+
     return(
-        <section className="item-list-container">
-            <h2>{greeting}</h2>
-            <hr/>
-        </section>
+       <>
+        {
+            loading ? <h2>Loading...</h2> : <ItemList productos={productos}/>
+        }
+       </>
     )
 
 
