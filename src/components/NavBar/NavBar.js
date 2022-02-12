@@ -1,13 +1,24 @@
-import './NavBar.css' 
+import { Link } from 'react-router-dom'
+import './NavBar.scss' 
 
 export const NavBar = () => {
+
+    const styles ={
+        textDecoration: 'none',
+        color: 'black'
+    }
+    
+
     return(
         <header className="header">
-            <h1>PASTELERIA PIALE</h1>
+            { <Link to='/' style={styles}>
+                <h1>Pasteleria Piale</h1>
+            </Link>}
+
             <nav className="header-nav">
-                <p className="header-link">Tortas</p>
-                <p className="header-link">Empanadas</p>
-                <p className="header-link">Cupcakes</p>
+                <Link to='/productos/empanadas' className= 'header-link'>Empanadas</Link>
+                <Link to='/productos/pasteleria' className= 'header-link'>Pasteles </Link>
+                <Link to='/nosotros' className= 'header-link'>Nosotros</Link>
             </nav>
         </header>
     )
