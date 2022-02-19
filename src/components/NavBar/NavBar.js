@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { CardWidget } from '../CardWidget/CartWidget'
 import './NavBar.scss' 
 
 export const NavBar = () => {
@@ -19,6 +20,7 @@ export const NavBar = () => {
                 <Link to='/productos/empanadas' className= 'header-link'>Empanadas</Link>
                 <Link to='/productos/pasteleria' className= 'header-link'>Pasteles </Link>
                 <Link to='/nosotros' className= 'header-link'>Nosotros</Link>
+                <CardWidget/>    
             </nav>
         </header>
     )

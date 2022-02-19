@@ -7,26 +7,31 @@ import {Nosotros} from './components/Nosotros'
 import {Contacto} from './components/Contacto'
 import { ItemList } from './components/ItemList/ItemList';
 import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
+import { CartProvider } from './context/CartContext';
+import { Cart } from './components/Cart/Cart';
 
 
 
 function App() {
   return (
     <>
-    <BrowserRouter>
-      <NavBar/>
+    <CartProvider>
+      <BrowserRouter>
+        <NavBar/>
 
-      <Routes>
-        <Route path="/" element={<ItemListContainer greeting="Bienvenido"/>}/>
-        <Route path="/productos/:catId" element={<ItemListContainer/>}/>
-        <Route path="/detail/:itemId" element={<ItemDetailContainer/>}/>
-        <Route path="/nosotros" element={<Nosotros/>}/>
-        <Route path="/contacto" element={<Contacto/>}/>
-        <Route path='*' element={<Navigate to ='/'/>}/>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<ItemListContainer greeting="Bienvenido"/>}/>
+          <Route path="/productos/:catId" element={<ItemListContainer/>}/>
+          <Route path="/detail/:itemId" element={<ItemDetailContainer/>}/>
+          <Route path="/nosotros" element={<Nosotros/>}/>
+          <Route path="/contacto" element={<Contacto/>}/>
+          <Route path='/cart' element={<Cart/>}/>
+          <Route path='*' element={<Navigate to ='/'/>}/>
+        </Routes>
 
 
-    </BrowserRouter>
+      </BrowserRouter>
+    </CartProvider>
     </>
   );
 }

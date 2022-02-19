@@ -1,7 +1,29 @@
+import { useContext, useState } from "react"
+import { Link } from "react-router-dom"
+import { CartContext } from "../../context/CartContext"
+import { ItemCount } from "../ItemCount/ItemCount"
 
 
 
 export const ItemDetail =({id,nombre,img,desc,precio,stock,categoria}) => {
+
+    const [cantidad,setCantidad] = useState(0)
+
+    //Dado que en este caso quiero variar el contador de otro componente utilizo el context
+    const {agregarAlCarrito, isInCart} = useContext(CartContext)
+
+    const handleAgregar = () => {
+        console.log(cantidad)
+        if(cantidad === 0) return
+        if(!isInCart(id)){
+            const addItem = {
+                id,nombre,precio, stock, cantidad
+            }
+
+            agregarAlCarrito(addItem)
+        }
+    }
+
 
     return (
         <div>
@@ -9,8 +31,18 @@ export const ItemDetail =({id,nombre,img,desc,precio,stock,categoria}) => {
             <img src={img} alt={nombre}/>
             <p>{desc}</p>
             <h5>Precio: ${precio}</h5>
+           
+            {
+                isInCart(id)
+                ? <Link to="/cart" className="btn btn-success my-3"> Terminar mi compra </Link>
+                :
+                <>
+                    <ItemCount max={stock} counter={cantidad} setCounter={setCantidad} />
+                    <button className="btn btn-success my-2" onClick={handleAgregar}> Agregar al carrito</button>
+                </>
+            }
 
-            
+
         </div>
     )
 
