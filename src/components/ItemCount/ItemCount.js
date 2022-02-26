@@ -1,3 +1,5 @@
+import { confsButton } from "./confsButton"
+
 export const ItemCount = ({max,min=0,counter,setCounter}) =>{
 
     const handleSumar = (e) => {
@@ -8,11 +10,13 @@ export const ItemCount = ({max,min=0,counter,setCounter}) =>{
         counter > min && setCounter(counter - 1)
     }
 
+    const {configRestar, configSumar} = confsButton(counter,max,min,handleRestar,handleSumar)
+
     return (
         <div>
-            <button className="btn btn-outline-primary" onClick = {handleRestar}>-</button>
+            <button {...configRestar}>-</button>
             <span className="mx-3">{counter}</span>
-            <button className="btn btn-primary" onClick={handleSumar}>+</button>
+            <button {...configSumar}>+</button>
         </div>
     )
 

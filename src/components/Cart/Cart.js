@@ -12,7 +12,7 @@ export const Cart = () => {
         <>
         {
             cart.length === 0 ? 
-                <div className="mx-4">
+                <div className="container my-4">
                     <h1> Tu canasta está vacía</h1> 
                     <Link to={"/"}>
                         <Button className="my-4" variant="primary">Regresar a comprar</Button>
